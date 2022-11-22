@@ -4,8 +4,8 @@ import { Stock } from "./stock.js";
 import { Action } from "./action.js";
 
 // Settings
-Setting.new_game();
-Setting.disable_right_click();
+Setting.newGame();
+Setting.disableRightClick();
 
 // Init
 const actions = document.getElementById("actions");

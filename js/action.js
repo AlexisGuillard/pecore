@@ -12,21 +12,21 @@ export class Action {
     this._html = document.createElement("div");
     this._html.classList.add("button");
     this._html.innerHTML = "<div class='text'>" + name + "</div>";
-    this._html.addEventListener("click", () => { this.do_action() }, false);
+    this._html.addEventListener("click", () => { this.doAction() }, false);
   }
 
-  do_action() {
+  doAction() {
     if (this._delay) {
-      const progress_bar = document.createElement("div");
-      progress_bar.classList.add("progress");
-      progress_bar.style.animationDuration = (this._delay / 1000) + "s";
+      const progressBar = document.createElement("div");
+      progressBar.classList.add("progress");
+      progressBar.style.animationDuration = (this._delay / 1000) + "s";
 
       this._html.classList.add("disable");
-      this._html.appendChild(progress_bar);
+      this._html.appendChild(progressBar);
 
       setTimeout(() => {
         this._action();
-        progress_bar.remove();
+        progressBar.remove();
         this._html.classList.remove("disable");
       }, this._delay);
     } else {

@@ -1,13 +1,13 @@
 import { Item } from "./item.js";
 
 export class Setting {
-  static disable_right_click() {
+  static disableRightClick() {
     window.addEventListener("contextmenu", (e) => {
       e.preventDefault(); 
     }, false);
   }
 
-  static new_game() {
+  static newGame() {
     localStorage.clear();
   }
 

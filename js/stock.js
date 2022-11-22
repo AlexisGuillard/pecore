@@ -21,11 +21,11 @@ export class Stock {
     this._items = items;
   }
 
-  get_item(name) {
+  getItem(name) {
     return this._items.find(item => item.name === name);
   }
 
-  get_item_quantity(name) {
+  getItemQuantity(name) {
     return this._items.find(item => item.name === name).quantity;
   }
 
@@ -37,7 +37,7 @@ export class Stock {
       this._items.push(new Item(name, quantity));
       this._items.sort((a, b) => { return a.name > b.name });
     }
-    this.update_html();
+    this.update();
   }
 
   add_random(name, quantity_min, quantity_max) {
@@ -49,17 +49,17 @@ export class Stock {
       this._items.push(new Item(name, quantity));
       this._items.sort((a, b) => { return a.name > b.name });
     }
-    this.update_html();
+    this.update();
   }
 
   remove(name, quantity) {
     const index = this._items.findIndex(item => item.name === name);
     if (index != -1)
       this._items[index].remove(quantity);
-    this.update_html();
+    this.update();
   }
 
-  update_html() {
+  update() {
     Setting.save(this._name, this._items);
     this._html.style.opacity = 1;
     this._html.innerHTML = "";
