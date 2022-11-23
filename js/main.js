@@ -2,12 +2,14 @@
 import { Setting } from "./setting.js";
 import { Stock } from "./stock.js";
 import { Action } from "./action.js";
+import { Storytelling } from "./storytelling.js";
 
 // Settings
-Setting.new_game();
-Setting.disable_right_click();
+Setting.newGame();
+Setting.disableRightClick();
 
 // Init
+const storytelling = document.getElementById("storytelling");
 const actions = document.getElementById("actions");
 const stocks = document.getElementById("stocks");
 
@@ -16,15 +18,31 @@ const inventory = new Stock("inventory");
 inventory.items = Setting.load("inventory"); // load local storage
 stocks.appendChild(inventory.html);
 
-// Display first button
-actions.appendChild((new Action("pick up an acorn", () => {
+Storytelling.addNarrative("You are at the edge of a forest.", storytelling);
+
+// Create a new action
+const pickUpAcornAction = new Action("pick up an acorn", () => {
   inventory.add("acorn", 1);
-})).html);
+});
 
-// actions.appendChild((new Action("throw an acorn", () => {
-//   inventory.remove("acorn", 1);
-// })).html);
+// Add an event bind to a specific trigger
+pickUpAcornAction.addEventOnTrigger(() => {
+  return pickUpAcornAction.clickCounter == 1;
+}, () => {
+  Storytelling.addNarrative("You find an acorn, it may be useful.", storytelling);
+});
 
-actions.appendChild((new Action("walk in the forest", () => {
-  inventory.add_random("acorn", 3, 10);
-}, 5000)).html);
+// Add an event bind to a specific trigger
+pickUpAcornAction.addEventOnTrigger(() => {
+  return pickUpAcornAction.clickCounter == 15;
+}, () => {
+  const walkInTheForestAction = new Action("walk in the forest", () => {
+    const quantity = inventory.add_random("acorn", 3, 10);
+    Storytelling.addNarrative("You find " + quantity.toString() + " acorns in the undergrowth.", storytelling);
+  }, 5000);
+  actions.appendChild(walkInTheForestAction.html);
+  Storytelling.addNarrative("Looking down, you come across a path.", storytelling);
+});
+
+// Display button
+actions.appendChild(pickUpAcornAction.html);
