@@ -37,7 +37,7 @@ pickUpAcornAction.addEventOnTrigger(() => {
   return pickUpAcornAction.clickCounter == 15;
 }, () => {
   const walkInTheForestAction = new Action("walk in the forest", () => {
-    const quantity = inventory.add_random("acorn", 3, 10);
+    const quantity = inventory.addRandom("acorn", 3, 10);
     Storytelling.addNarrative("You find " + quantity.toString() + " acorns in the undergrowth.", storytelling);
   }, 5000);
   actions.appendChild(walkInTheForestAction.html);
