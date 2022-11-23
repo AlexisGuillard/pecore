@@ -39,7 +39,7 @@ pickUpAcornAction.addEventOnTrigger(() => {
   const walkInTheForestAction = new Action("walk in the forest", () => {
     const quantity = inventory.addRandom("acorn", 3, 10);
     Storytelling.addNarrative("You find " + quantity.toString() + " acorns in the undergrowth.", storytelling);
-  }, 5000);
+  }, 3000);
   actions.appendChild(walkInTheForestAction.html);
   Storytelling.addNarrative("Looking down, you come across a path.", storytelling);
 });
