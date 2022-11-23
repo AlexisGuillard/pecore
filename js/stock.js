@@ -40,7 +40,7 @@ export class Stock {
     this.update();
   }
 
-  add_random(name, quantity_min, quantity_max) {
+  addRandom(name, quantity_min, quantity_max) {
     const index = this._items.findIndex(item => item.name === name);
     const quantity = Math.floor(Math.random() * (quantity_max - quantity_min + 1) + quantity_min);
     if (index != -1) {
@@ -50,6 +50,7 @@ export class Stock {
       this._items.sort((a, b) => { return a.name > b.name });
     }
     this.update();
+    return quantity;
   }
 
   remove(name, quantity) {
