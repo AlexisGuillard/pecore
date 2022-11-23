@@ -89,3 +89,12 @@ body, html {
   position: relative;
   z-index: 1;
 }
+
+#storytelling {
+  flex-basis: 250px;
+}
+
+.narrative {
+  margin: 4px;
+  padding: 4px 0;
+}
